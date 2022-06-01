@@ -75,6 +75,8 @@ if(choice == 'A' || choice=='a'){
 
  if(choice == 'D'|| choice== 'd'){
 	update();
+	remove("bds_donor_data.txt");
+    rename("temp.txt","bds_donor_data.txt");
 		cout<<"Do you want to end?(if yes press Y otherwise press N): ";
 	cin>>choice;
 	if(choice=='y'||choice=='Y'){
@@ -160,7 +162,7 @@ void delete_data(){
 		ofstream write;
 		write.open("temp.txt",ios::app | ios::out);
 		
-	cout<<"Enter the name of Student you want to delete the record of:";
+	cout<<"Enter the name of Donor you want to delete the record of:";
 	string name;
 	getline(cin,name);
 	while(read){
@@ -201,7 +203,7 @@ void update(){
 	ifstream read;
 	read.open("bds_donor_data.txt" ,ios::out);
 	ofstream write;
-	write.open("bds_donor_data.txt");
+	write.open("temp.txt");
 	string id;
 	cin>>id;
   while(read){
@@ -214,10 +216,6 @@ void update(){
 	         getline(read,d[i].date);
 			
 			     if(id==d[i].id){
-				  cout<<"Not found such id"<<endl;
-			     	break;
-			     }
-			      else{
 			     	cout<<"Enter the updated data for donor: "<<i+1<<endl<<endl;
 			      	cout<<"Enter New ID :";
 			     	cin>>d[i].id;
@@ -231,9 +229,22 @@ void update(){
 			     	cin>>d[i].id;
 			     	cout<<"Enter New Date :";
 			     	cin>>d[i].id;
-                     write<<d[i].id<<endl<<d[i].name<<endl<<d[i].address<<endl<<d[i].phone<<endl<<d[i].blood_group<<endl<<d[i].date<<endl;
-
-			     	break;
+          write<<d[i].id;
+		  write<<endl;
+		  write<<d[i].name;
+		  write<<endl;
+		  write<<d[i].address;
+		  write<<endl;
+		  write<<d[i].phone;
+		  write<<endl;
+		  write<<d[i].blood_group;
+		  write<<endl;
+		  write<<d[i].date;
+			     }
+			      else{
+			     	
+				  cout<<"Not found such id"<<endl;
+                   break;
 			     	
 				
 			}
@@ -241,31 +252,9 @@ void update(){
 	
     } 
 	write.close();	
+    read.close();
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
