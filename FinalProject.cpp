@@ -144,7 +144,8 @@ void search(){
 			 getline(read,d[i].blood_group);
 			 getline(read,d[i].date);
             if (blood==d[i].blood_group){	
-             cout<<"  "<<d[i].id<<"\t"<<d[i].name<<"\t"<<d[i].address<<"\t"<<d[i].phone<<"\t"<<d[i].blood_group<<"\t"<<d[i].date<<endl<<endl;
+             cout<<"ID : "<<d[i].id<<endl<<"Name : "<<d[i].name<<endl<<"Address : "<<d[i].address<<endl<<"Phone No.: "<<d[i].phone<<endl<<"Blood Group: "<<d[i].blood_group<<endl<<"Date: "<<d[i].date;
+			 cout<<endl<<endl;
 	         }   
 		}
     }
