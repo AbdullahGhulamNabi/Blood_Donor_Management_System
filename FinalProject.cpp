@@ -29,8 +29,8 @@ while(true){
 	
 	cout<<"\t\t\tPress A: To   Add a doner's record\n";
 	cout<<"\t\t\tPress B: To Search a doner's record\n";
-	cout<<"\t\t\tPress C: To Update a donor's record\n";
-	cout<<"\t\t\tPress D: To Delete a donor's record\n";
+	cout<<"\t\t\tPress C: To Delete a donor's record\n";
+	cout<<"\t\t\tPress D: To Update a donor's record\n";
 	cout<<endl<<endl;
 cout<<"\tYour choice :";	
 cin>>choice;	
