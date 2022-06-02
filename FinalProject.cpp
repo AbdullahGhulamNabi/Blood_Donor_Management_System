@@ -1,7 +1,7 @@
 #include<iostream>
 #include<iomanip>
 #include<fstream>
-#include<string>
+#include<cstring>
 #include<cstdlib>
 using namespace std;
 struct donor{
@@ -20,6 +20,7 @@ void delete_data();
     
 	char choice;
     donor d[100];
+    
 int main(){
 
 	cout<<"\t\t******************* --------------------------------- *******************************\n\n";
@@ -63,7 +64,7 @@ if(choice == 'A' || choice=='a'){
 
     rename("temp.txt","bds_donor_data.txt");
     cout<<"Data deleted succesfully!"<<endl<<endl;
-		cout<<"Do you want to end?(if yes press Y otherwise press N): ";
+	cout<<"Do you want to end?(if yes press Y otherwise press N): ";
 	cin>>choice;
 	if(choice=='y'||choice=='Y'){
 		break;
@@ -75,7 +76,7 @@ if(choice == 'A' || choice=='a'){
 
  if(choice == 'D'|| choice== 'd'){
 	update();
-		cout<<"Do you want to end?(if yes press Y otherwise press N): ";
+	cout<<"Do you want to end?(if yes press Y otherwise press N): ";
 	cin>>choice;
 	if(choice=='y'||choice=='Y'){
 		break;
@@ -89,6 +90,7 @@ return (0);
 int enter_data(){
 	
 	donor d[100];
+		int count=0;
 	while(true){
 	    for(int i=0;i<100;i++){
   	    cout<<"Enter the id of donor  : ";
@@ -110,12 +112,14 @@ int enter_data(){
   	    getline(cin,d[i].date);
   	    cout<<"\n";  
   	    
+             count++;
          ofstream write;
          write.open("bds_donor_data.txt" ,ios :: app | ios::out);
          write<<d[i].id<<endl<<d[i].name<<endl<<d[i].address<<endl<<d[i].phone<<endl<<d[i].blood_group<<endl<<d[i].date<<endl;
-         write.close(); 	
+         write.close(); 
          cout<<"If you want to enter more donor press Y otherwise press N :" ;
-         cin>>choice; 	
+         cin>>choice; 
+		 cout<<endl;	
          cin.ignore();
 	        if(choice=='N'|| choice=='n'){	
  	        return 0;
@@ -123,12 +127,13 @@ int enter_data(){
              system("cls");
         }    
     }
+		 cout<<"The total number of donor entered are :"<<count<<endl<<endl;	
 }
 
 void search(){
 
  donor d[100];
-	
+	bool flag=true;
     ifstream read;
     read.open("bds_donor_data.txt");
     cout<<"Enter the Blood group to be searched:";
@@ -146,8 +151,12 @@ void search(){
             if (blood==d[i].blood_group){	
              cout<<"ID : "<<d[i].id<<endl<<"Name : "<<d[i].name<<endl<<"Address : "<<d[i].address<<endl<<"Phone No.: "<<d[i].phone<<endl<<"Blood Group: "<<d[i].blood_group<<endl<<"Date: "<<d[i].date;
 			 cout<<endl<<endl;
-	         }   
+			 flag=false;
+	         }  
 		}
+			 if(flag==true){
+			 	cout<<"Donor with required blood group is not present."<<endl<<endl;
+			 } 
     }
     cin.ignore();
     read.close();
@@ -184,6 +193,7 @@ void delete_data(){
 		  write<<d[i].blood_group;
 		  write<<endl;
 		  write<<d[i].date;
+		  write<<endl;
 		}
 	}
   write.close();
@@ -197,53 +207,30 @@ void delete_data(){
 void update(){
 
 	donor d[100];
-	cout<<"Enter the ID of donor whose Data you want to update :";
 	ifstream read;
 	read.open("bds_donor_data.txt");
 	ofstream write;
 	write.open("temp.txt");
+	cout<<"Enter the ID of donor whose Data you want to update :";
 	string id;
 	cin>>id;
+	
 	int i=0;
   while(read){
-             getline(read,d[i].id);
-	         getline(read,d[i].name);
-             getline(read,d[i].address);
-	         getline(read,d[i].phone);
-             getline(read,d[i].blood_group);
-	         getline(read,d[i].date);
-			
-			     if(id!=d[i].id){
-			write<<d[i].id;
-		  write<<endl;
-		  write<<d[i].name;
-		  write<<endl;
-		  write<<d[i].address;
-		  write<<endl;
-		  write<<d[i].phone;
-		  write<<endl;
-		  write<<d[i].blood_group;
-		  write<<endl;
-		  write<<d[i].date<<endl;	
-		
-			     	
-			     }
-			     	
-		else{
-			cin.ignore();
+			     if(id==d[i].id){
 			cout<<"Enter the updated data for donor: "<<endl<<endl;
 			      	cout<<"Enter New ID :";
 			     	 getline(read,d[i].id);
 			     	cout<<"Enter New Name :";
-			     	 getline(read,d[i].id);
+			     	 getline(read,d[i].name);
 			     	cout<<"Enter New Address :";
-			     	 getline(read,d[i].id);
+			     	 getline(read,d[i].address);
 			     	cout<<"Enter New Phone NO.:";
-			     	 getline(read,d[i].id);
+			     	 getline(read,d[i].phone);
 			     	cout<<"Enter New BLood Group :";
-			     	 getline(read,d[i].id);
+			     	 getline(read,d[i].blood_group);
 			     	cout<<"Enter New Date :";
-			     	 getline(read,d[i].id);
+			     	 getline(read,d[i].date);
           write<<d[i].id;
 		  write<<endl;
 		  write<<d[i].name;
@@ -255,6 +242,30 @@ void update(){
 		  write<<d[i].blood_group;
 		  write<<endl;
 		  write<<d[i].date<<endl;
+			     	
+			     }
+			     	
+		else{
+             getline(read,d[i].id);
+	         getline(read,d[i].name);
+             getline(read,d[i].address);
+	         getline(read,d[i].phone);
+             getline(read,d[i].blood_group);
+	         getline(read,d[i].date);
+			
+			//cin.ignore();
+	 	write<<d[i].id;
+		  write<<endl;
+		  write<<d[i].name;
+		  write<<endl;
+		  write<<d[i].address;
+		  write<<endl;
+		  write<<d[i].phone;
+		  write<<endl;
+		  write<<d[i].blood_group;
+		  write<<endl;
+		  write<<d[i].date<<endl;	
+		
 	i++;
 		  
 		}
