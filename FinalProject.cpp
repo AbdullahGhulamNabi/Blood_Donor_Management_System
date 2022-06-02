@@ -214,7 +214,7 @@ void update(){
 	         getline(read,d[i].date);
 			
 			     if(id!=d[i].id){
-			     	write<<d[i].id;
+			write<<d[i].id;
 		  write<<endl;
 		  write<<d[i].name;
 		  write<<endl;
@@ -230,19 +230,20 @@ void update(){
 			     }
 			     	
 		else{
+			cin.ignore();
 			cout<<"Enter the updated data for donor: "<<endl<<endl;
 			      	cout<<"Enter New ID :";
-			     	cin>>d[i].id;
+			     	 getline(read,d[i].id);
 			     	cout<<"Enter New Name :";
-			     	cin>>d[i].id;
+			     	 getline(read,d[i].id);
 			     	cout<<"Enter New Address :";
-			     	cin>>d[i].id;
+			     	 getline(read,d[i].id);
 			     	cout<<"Enter New Phone NO.:";
-			     	cin>>d[i].id;
+			     	 getline(read,d[i].id);
 			     	cout<<"Enter New BLood Group :";
-			     	cin>>d[i].id;
+			     	 getline(read,d[i].id);
 			     	cout<<"Enter New Date :";
-			     	cin>>d[i].id;
+			     	 getline(read,d[i].id);
           write<<d[i].id;
 		  write<<endl;
 		  write<<d[i].name;
@@ -254,12 +255,14 @@ void update(){
 		  write<<d[i].blood_group;
 		  write<<endl;
 		  write<<d[i].date<<endl;
+	i++;
 		  
 		}
-	i++;
     } 	
     remove("bds_donor_data.txt");
     rename("temp.txt","bds_donor_data.txt" );
+    
+    cout<<"Record has been updated succesfully"<<endl;
 
 }
 
