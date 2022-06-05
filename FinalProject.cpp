@@ -159,10 +159,10 @@ void search(){
 			 flag=false;
 	         }  
 		}
+    }
 			 if(flag==true){
 			 	cout<<"Donor with required blood group is not present."<<endl<<endl;
 			 } 
-    }
     cin.ignore();
     read.close();
 }
@@ -209,12 +209,12 @@ void delete_data(){
 
 
 
-void update(){
+ void update(){
 
 	donor d[100];
 	cout<<"Enter the ID of donor whose Data you want to update :";
 	ifstream read;
-	read.open("bds_donor_data.txt");
+	read.open("bds_donor_data.txt" ,ios::out);
 	ofstream write;
 	write.open("temp.txt");
 	string id;
@@ -229,19 +229,18 @@ void update(){
 	         getline(read,d[i].date);
 			
 			     if(id==d[i].id){
-			     	cout<<"Enter the updated data for donor: "<<i+1<<endl<<endl;
-			      	cout<<"Enter New ID :";
-			     	cin>>d[i].id;
+			     	cout<<"Enter the updated data for donor: "<<endl<<endl;
+                     cin.ignore();
 			     	cout<<"Enter New Name :";
-			     	cin>>d[i].id;
-			     	cout<<"Enter New Address :";
-			     	cin>>d[i].id;
+                    getline(cin,d[i].name);
+ 			     	cout<<"Enter New Address :";
+			     	 getline(cin,d[i].address);
 			     	cout<<"Enter New Phone NO.:";
-			     	cin>>d[i].id;
+			     	 getline(cin,d[i].phone);
 			     	cout<<"Enter New BLood Group :";
-			     	cin>>d[i].id;
+			     	 getline(cin,d[i].blood_group);
 			     	cout<<"Enter New Date :";
-			     	cin>>d[i].id;
+			     	 getline(cin,d[i].date);
           write<<d[i].id;
 		  write<<endl;
 		  write<<d[i].name;
@@ -272,11 +271,10 @@ void update(){
 				
 			}
 		}
-	
-    } 
+}
+     
+
 	write.close();	
     read.close();
 
 }
-
-
